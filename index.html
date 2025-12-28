@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corruption — Social Deduction MVP</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <p class="eyebrow">MVP Simulation</p>
+        <h1>CORRUPTION</h1>
+        <p class="subtitle">Cycle-by-cycle social deduction in a dark village.</p>
+      </div>
+      <div class="header-actions">
+        <button id="new-game">Start new village</button>
+        <div class="cycle">Cycle <span id="cycle-counter">1</span></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Your role</p>
+            <h2 id="player-role">Loading…</h2>
+          </div>
+          <div class="status" id="player-status">Alive</div>
+        </div>
+        <p id="role-description"></p>
+
+        <form id="action-form">
+          <fieldset id="action-options">
+            <legend>Choose your major action</legend>
+            <label class="action-choice">
+              <input type="radio" name="action" value="ability" checked>
+              <span class="label">Use class ability</span>
+              <span class="help" id="ability-help"></span>
+            </label>
+            <label class="action-choice">
+              <input type="radio" name="action" value="explore">
+              <span class="label">Explore outside the village</span>
+              <span class="help">You will be absent from the social phase but may find resources.</span>
+            </label>
+            <label class="action-choice">
+              <input type="radio" name="action" value="idle">
+              <span class="label">Wait and observe</span>
+              <span class="help">Keep a low profile and rely on social cues.</span>
+            </label>
+            <label class="action-choice hidden" id="corrupt-option">
+              <input type="radio" name="action" value="corrupt">
+              <span class="label">Attempt to corrupt someone</span>
+              <span class="help">Corruption is instant and invisible.</span>
+            </label>
+          </fieldset>
+
+          <div class="field" id="target-field">
+            <label for="target-select">Target (for corruption or focus)</label>
+            <select id="target-select"></select>
+            <p class="help">You cannot target eliminated players.</p>
+          </div>
+
+          <button type="submit" id="resolve-actions">Resolve actions</button>
+          <p class="form-hint" id="action-hint">Actions resolve simultaneously. Discussion and voting follow.</p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Village</p>
+            <h2>People, classes, presence</h2>
+          </div>
+          <div class="legend">
+            <span class="chip chip-alive">Alive</span>
+            <span class="chip chip-exploring">Exploring</span>
+            <span class="chip chip-dead">Eliminated</span>
+          </div>
+        </div>
+        <div id="player-list" class="player-list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Discussion</p>
+            <h2>Accusations and social noise</h2>
+          </div>
+          <div class="phase" id="phase-indicator">Awaiting actions</div>
+        </div>
+        <div id="discussion-log" class="scroll-area"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Collective vote</p>
+            <h2>Eliminate one player</h2>
+          </div>
+          <div class="vote-status" id="vote-status">Pending actions</div>
+        </div>
+        <form id="vote-form">
+          <div class="field">
+            <label for="vote-select">Your vote</label>
+            <select id="vote-select"></select>
+            <p class="help">All survivors must vote. Highest votes are eliminated; ties are broken by unrest.</p>
+          </div>
+          <button type="submit" id="cast-vote" disabled>Cast vote &amp; resolve elimination</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Cycle events</p>
+            <h2>Action resolution</h2>
+          </div>
+          <button class="ghost" id="clear-log">Clear log</button>
+        </div>
+        <div id="event-log" class="scroll-area"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
