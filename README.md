@@ -68,3 +68,26 @@ Exemples de classes pour le MVP :
 - Ajout de nouvelles classes et variantes de corruption.
 - Règles avancées, événements extérieurs, modes alternatifs.
 - Le socle MVP fonctionne pleinement sans ces ajouts.
+
+---
+
+# Web MVP
+
+Une simulation jouable en solo est disponible pour explorer la boucle décrite ci-dessus.
+
+## Lancer la partie
+
+1. Ouvrez `index.html` dans votre navigateur (double-clic ou petit serveur statique).
+2. Le joueur `You` reçoit une classe publique et un état secret (sain ou corrompu).
+3. Choisissez une action majeure (compétence, exploration, attendre, corruption si possible) puis cliquez sur **Resolve actions**.
+4. Lisez la discussion simulée, choisissez une cible dans la section **Collective vote**, puis résolvez l’élimination.
+5. Les cycles s’enchaînent jusqu’à la victoire du village (tous les corrompus éliminés) ou la victoire de la corruption (tous les vivants corrompus).
+
+## Points notables
+
+- Classes implémentées : Veilleur, Archiviste, Pourvoyeur, Sentinelle.
+- Les corrompus peuvent infecter un joueur sain comme action majeure ; la corruption reste invisible dans l’interface.
+- Les absences (exploration) sont visibles et alimentent la suspicion. La Sentinelle cible un joueur précis.
+- L’Archiviste exploite l’historique de votes pour pointer les revirements. Le Pourvoyeur distribue des ressources pour réduire la suspicion.
+- Les PNJ accusent et votent à partir d’un score de suspicion, avec des biais s’ils sont corrompus.
+- Le bouton **Start new village** relance une partie complète avec un nouvel état secret.
